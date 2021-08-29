@@ -22,5 +22,7 @@ public class MoodAnalyserTest {
         Assert.assertThat(mood,CoreMatchers.is("SAD"));
         mood = moodAnalyser.analyseMood("I am in Sad Mood");
         Assert.assertThat(mood,CoreMatchers.is("SAD"));
+        mood = moodAnalyser.analyseMood("I am in Any Mood");
+        Assert.assertThat(mood,CoreMatchers.is("HAPPY"));
     }
 }
