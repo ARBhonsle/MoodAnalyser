@@ -1,5 +1,7 @@
 package com.exceptions;
 
+import com.exceptions.MoodAnalysisException;
+
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Test;
@@ -7,14 +9,16 @@ import org.junit.Test;
 
 public class MoodAnalyserTest {
     static String mood;
+    private Object MoodAnalysisException;
+
     public MoodAnalyserTest() {
     }
 
-    public String analyseMood(String mood) throws Exception {
+    public String analyseMood(String mood) throws Exception, MoodAnalysisException {
 
         if(mood.length()==0){
-            throw new Exception("HAPPY");
-        } else if (mood.contains("sad")) {
+            throw new MoodAnalysisException("HAPPY");
+        }else if (mood.contains("sad")) {
             return "SAD";
         } else if (mood.contains("Sad")) {
             return "SAD";
@@ -42,9 +46,11 @@ public class MoodAnalyserTest {
 
             this.mood = moodAnalyser.analyseMood("");
 
-        } catch (Exception e){
+        } catch (Exception | com.exceptions.MoodAnalysisException e){
             this.mood = "HAPPY";
-            Assert.assertThat(mood, CoreMatchers.is("HAPPY"));
+            if(e.equals(MoodAnalysisException)){
+                Assert.assertThat(mood, CoreMatchers.is("HAPPY"));
+            }
         }
     }
 }
