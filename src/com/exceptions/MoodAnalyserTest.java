@@ -15,6 +15,8 @@ public class MoodAnalyserTest {
             return "SAD";
         } else if (mood.contains("Sad")) {
             return "SAD";
+        } else if (mood.contains("Happy")) {
+            return "SAD";
         }
         return "HAPPY";
     }
@@ -22,7 +24,7 @@ public class MoodAnalyserTest {
     @Test
     public void MoodAnalyser() throws Exception {
         MoodAnalyserTest moodAnalyser = new MoodAnalyserTest();
-        String mood = moodAnalyser.analyseMood("This is a sad message");
+        mood = moodAnalyser.analyseMood("This is a sad message");
         Assert.assertThat(mood, CoreMatchers.is("SAD"));
 
         mood = moodAnalyser.analyseMood("I am in Sad Mood");
@@ -30,5 +32,8 @@ public class MoodAnalyserTest {
 
         mood = moodAnalyser.analyseMood("I am in Any Mood");
         Assert.assertThat(mood, CoreMatchers.is("HAPPY"));
+
+        mood = moodAnalyser.analyseMood("I am in Happy Mood");
+        Assert.assertThat(mood, CoreMatchers.is("SAD"));
     }
 }
