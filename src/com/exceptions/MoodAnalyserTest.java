@@ -5,24 +5,32 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class MoodAnalyserTest {
+    static String mood;
 
-    public String analyseMood(String mood){
-        if(mood.contains("sad")){
+    public MoodAnalyserTest() {
+    }
+
+    public String analyseMood(String mood) {
+        if (mood.contains("sad")) {
             return "SAD";
-        } else if(mood.contains("Sad")){
+        } else if (mood.contains("Sad")) {
             return "SAD";
         }
         return "HAPPY";
     }
 
     @Test
-    public void MoodAnalyser() throws Exception{
+    public void MoodAnalyser() throws Exception {
         MoodAnalyserTest moodAnalyser = new MoodAnalyserTest();
         String mood = moodAnalyser.analyseMood("This is a sad message");
-        Assert.assertThat(mood,CoreMatchers.is("SAD"));
+        Assert.assertThat(mood, CoreMatchers.is("SAD"));
+
+        moodAnalyser = new MoodAnalyserTest();
         mood = moodAnalyser.analyseMood("I am in Sad Mood");
-        Assert.assertThat(mood,CoreMatchers.is("SAD"));
+        Assert.assertThat(mood, CoreMatchers.is("SAD"));
+
+        moodAnalyser = new MoodAnalyserTest();
         mood = moodAnalyser.analyseMood("I am in Any Mood");
-        Assert.assertThat(mood,CoreMatchers.is("HAPPY"));
+        Assert.assertThat(mood, CoreMatchers.is("HAPPY"));
     }
 }
