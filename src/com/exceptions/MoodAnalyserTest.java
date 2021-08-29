@@ -10,8 +10,10 @@ public class MoodAnalyserTest {
     public MoodAnalyserTest() {
     }
 
-    public String analyseMood(String mood) {
-        if (mood.contains("sad")) {
+    public String analyseMood(String mood) throws Exception {
+        if(mood.length()==0){
+            throw new Exception("Null Message");
+        } else if (mood.contains("sad")) {
             return "SAD";
         } else if (mood.contains("Sad")) {
             return "SAD";
@@ -34,6 +36,9 @@ public class MoodAnalyserTest {
         Assert.assertThat(mood, CoreMatchers.is("HAPPY"));
 
         mood = moodAnalyser.analyseMood("I am in Happy Mood");
+        Assert.assertThat(mood, CoreMatchers.is("SAD"));
+
+        mood = moodAnalyser.analyseMood("");
         Assert.assertThat(mood, CoreMatchers.is("SAD"));
     }
 }
